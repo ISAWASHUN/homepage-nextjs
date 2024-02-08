@@ -1,5 +1,8 @@
-import Image from 'next/image'
-import React from 'react'
+'use client';
+import Image from 'next/image';
+import React, { useEffect } from 'react';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 const servicesContent = {
   text: {
@@ -45,32 +48,55 @@ const servicesContent = {
   ],
 };
 
-const Services = () => {
+function Services() {
+
+  useEffect(() => {
+    AOS.init({
+      duration: 700,
+      easing: 'slide',
+      once: true,
+    });
+  });
+
   return (
-    <section id='services'>
-      <div>
-        <div>
-          <span>{servicesContent.text.subTitle}</span>
-          <h2>{servicesContent.text.title}</h2>
-          <p>{servicesContent.text.description}</p>
+    <section id="services" className="py-20 bg-light ">
+      <div className="container px-4 mx-auto">
+        {/* 上の段 */}
+        <div className="max-w-xl mx-auto text-center mb-20"
+            data-aos="fade-up"
+            data-aos-delay="100">
+          <span className='inline-block py-1 pl-3 text-heading font-semibold relative mb-7 before:content-[" "] before:absolute before:w-2/3 before:bg-pinkLight before:left-0 before:top-0 before:bottom-0 before:-z-10 z-50'>
+            {servicesContent.text.subTitle}
+          </span>
+          <h2 className='text-heading text-2xl lg:text-4xl font-bold mb-5'>{servicesContent.text.Title}</h2>
+          <p className='text-body leading-relaxed'>{servicesContent.text.description}</p>
         </div>
         {/* 下の段 */}
-        <div>
-          {servicesContent.items.map((item, index) => (
-            <div key={index}>
-              <div>
-                <Image src={item.icon} alt={item.title} width={100} height={100} />
+        <div className='grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-10'>
+          {servicesContent.items.map((item, index) => {
+            index *= 100;
+
+          return(
+            <div key={index}
+            className='flex space-x-10'
+            data-aos="fade-up"
+            data-aos-delay={index}
+            >
+              <div className='w-14 shrink-0'>
+                <span className='inline-flex items-center justify-center p-2 w-[70px] h-[70px] rounded-lg bg-white shadow-2xl'>
+                  <Image src={item.icon} width={60} height={60} alt="icon" />
+                </span>
               </div>
               <div>
-                <h3>{item.title}</h3>
-                <p>{item.description}</p>
+                <h3 className='text-heading font-bold mb-3'>{item.title}</h3>
+                <p className='leading-relaxed text-body'>{item.description}</p>
               </div>
             </div>
-          ))}
+          ) })}
         </div>
       </div>
     </section>
-  )
+  );
 }
 
-export default Services
+export default Services;
