@@ -45,10 +45,10 @@ const Solutions = () => {
             <div>
               <div>
                 <Image
-                  src="/images/illustration-grow-together.svg"
+                  src={solutionsContent.images.img1}
                   alt="grow together"
-                  width={500}
-                  height={300}
+                  width={626}
+                  height={640}
                 />
               </div>
               <div>
@@ -60,7 +60,7 @@ const Solutions = () => {
                 </div>
                 <div>
                   <div>
-                    <Image/>
+                    <Image src={solutionsContent.images.img3} width={626} height={640} alt='img3'/>
                   </div>
                 </div>
                 <div>
@@ -69,12 +69,12 @@ const Solutions = () => {
                       <div/>
                     </div>
                     <div>
-                      <Image/>
+                      <Image src={solutionsContent.images.img2} width={547} height={573} alt='img2'/>
                     </div>
                     <div>
                       <div>
-                        <strong></strong>
-                        <span></span>
+                        <strong>{solutionsContent.experience.year}</strong>
+                        <span>{solutionsContent.experience.label}</span>
                       </div>
                     </div>
                   </div>
@@ -84,14 +84,16 @@ const Solutions = () => {
           </div>
           {/* 右 */}
         <div>
-          <span><FaCheck/></span>
-          <h2></h2>
-          <p></p>
+          <span>{solutionsContent.text.subTitle}</span>
+          <h2>{solutionsContent.text.Title}</h2>
+          <p>{solutionsContent.text.description}</p>
           <ul>
-            <li>
-              <span><FaCheck/></span>
-              <span></span>
-            </li>
+            {solutionsContent.text.features.map((feature, index) => (
+              <li key={index}>
+                <span><FaCheck/></span>
+                <span>{feature.title}</span>
+              </li>
+            ))}
           </ul>
           <div>
             <Link href="/pricing"/>
