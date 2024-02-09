@@ -2,7 +2,7 @@ import Image from "next/image";
 import Hero from "./components/Hero";
 import Stats from "./components/Stats";
 import Services from "./components/Services";
-import Solution from "./components/Solution";
+import Solutions from "./components/Solutions";
 import Testimonials from "./components/Testimonials";
 import Blog from "./components/Blog";
 
@@ -12,7 +12,7 @@ export default function Home() {
       <Hero />
       <Stats />
       <Services/>
-      <Solution/>
+      <Solutions/>
       <Testimonials/>
       <Blog/>
     </>
